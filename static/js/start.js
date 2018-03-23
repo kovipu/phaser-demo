@@ -13,7 +13,7 @@ function preload() {
 function create() {
   
   // Create some text in the middle of the game area
-  var helloText = game.add.text(250, 250, 'Hello, Phaser!', { 
+  var helloText = game.add.text(250, 250, 'Hei kurssi!', { 
       fontSize: '32px', 
       fill: '#00F' 
   });

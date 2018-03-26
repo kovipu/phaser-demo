@@ -1,5 +1,5 @@
 // Create a new Phaser game object with a single state that has 3 functions
-let game = new Phaser.Game(800, 600, Phaser.AUTO, 'area', {
+let game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, 'area', {
   preload: preload,
   create: create,
   update: update
@@ -39,16 +39,16 @@ function create() {
     "}"];
 
   filter = new Phaser.Filter(game, null, fragmentSrc);
-  filter.setResolution(800, 600);
+  filter.setResolution(window.innerWidth, window.innerHeight);
 
   let sprite = game.add.sprite();
-  sprite.width = 800;
-  sprite.height = 600;
+  sprite.width = window.innerWidth;
+  sprite.height = window.innerHeight;
 
   sprite.filters = [filter];
 
   // Create some text in the middle of the game area
-  helloText = game.add.text(400, 300, 'Hei kurssi!', {
+  helloText = game.add.text(window.innerWidth/2, window.innerHeight/2, 'Hei kurssi!', {
     font: "bold 32px Arial",
     fill: "#ff0044"
   });
@@ -57,7 +57,7 @@ function create() {
 // Called once every frame, ideally 60 times per second
 function update() {
   filter.update();
-  helloText.x -= 4;
+  helloText.x -= 5;
 
   if (helloText.x < -helloText.width) {
     helloText.x = game.world.width;

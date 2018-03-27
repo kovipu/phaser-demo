@@ -4,18 +4,25 @@ let game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '
   create: create,
   update: update
 });
+let helloText;
+let filter;
+let music;
 
 // Called first
 function preload() {
+  game.load.audio('server', 'media/server.wav');
 }
-
-let helloText;
-let filter;
 
 // Called after preload
 function create() {
 
-  var fragmentSrc = [
+  //sound definitions
+  music = game.add.audio('server');
+  music.loop = true;
+  music.play();
+
+  //filter definitions
+  let fragmentSrc = [
 
     "precision mediump float;",
 
@@ -41,22 +48,26 @@ function create() {
   filter = new Phaser.Filter(game, null, fragmentSrc);
   filter.setResolution(window.innerWidth, window.innerHeight);
 
+  //adding sprite
   let sprite = game.add.sprite();
   sprite.width = window.innerWidth;
   sprite.height = window.innerHeight;
-
   sprite.filters = [filter];
 
   // Create some text in the middle of the game area
-  helloText = game.add.text(window.innerWidth/2, window.innerHeight/2, 'Hei kurssi!', {
+  helloText = game.add.text(window.innerWidth / 2, window.innerHeight / 2, 'Morjentes kurssi!', {
     font: "bold 32px Arial",
     fill: "#ff0044"
   });
+  helloText.stroke = '#000000';
+  helloText.strokeThickness = 2;
+  helloText.setShadow(5, 5, 'rgba(0,0,0,0.5)', 5);
 }
 
 // Called once every frame, ideally 60 times per second
 function update() {
   filter.update();
+
   helloText.x -= 5;
 
   if (helloText.x < -helloText.width) {

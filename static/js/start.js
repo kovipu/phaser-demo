@@ -10,7 +10,7 @@ let music;
 
 // Called first
 function preload() {
-  game.load.audio('server', 'media/server.wav');
+  game.load.audio('server', 'media/server.ogg');
 }
 
 // Called after preload
